@@ -1,0 +1,18 @@
+body{
+    text-align: center;
+    background-color: azure;
+}
+#bob{
+    background-color: rgb(21, 255, 0);
+    text-emphasis-color: black;
+}
+#inputer{
+    background-color: aqua;
+}
+.hi{
+    text-decoration: underline;
+}
+#hhh{
+    background-color: rgb(226, 23, 23);
+    height: 30px;
+}
