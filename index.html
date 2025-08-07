@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Multiplication Quizzer</title>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
     
-</head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>The Math Quizzer</title>
 </head>
 <body>
   <h1>The Math Quizzer</h1>
@@ -61,26 +56,33 @@
     nextQuestion();
   </script>
 <h1 id="demo"></h1>
+<h1 id="thetimer"></h1>
+<button id="thetimerstart" onclick="timer()">Press To Start Timer</button>
 
 <audio id="alarmSound" src="alarm-clock-90867.mp3" preload="auto"></audio>
 
-<script>
-  const countDownDate = new Date().getTime() + 60 * 1000;
+  <script>
+    function timer() {
+      document.getElementById("thetimerstart").style.visibility = "hidden";
 
-  const x = setInterval(function () {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
+      const countDownDate = new Date().getTime() + 60 * 1000;
 
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("demo").innerHTML = seconds + "s ";
+      const x = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
 
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("demo").innerHTML = "!TIME UP!";
-      document.getElementById("alarmSound").play();
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = seconds + "s ";
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("thetimer").innerHTML = "!TIME UP!";
+          document.getElementById("demo").innerHTML = "";
+          document.getElementById("alarmSound").play();
+        }
+      }, 1000);
     }
-  }, 1000);
-</script>
+  </script>
 
 </body>
 </html>
