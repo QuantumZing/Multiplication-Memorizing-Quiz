@@ -6,22 +6,41 @@
     <title>The Multiplication Quizzer</title>
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
+    <style>
+      body{
+        background-color: black;
+      }
+      .glow {
+  color: #fff;
+  text-align: center;
+  animation: glow .5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff83c1, 0 0 40px #ff6cb6, 0 0 50px #ff79bc, 0 0 60px #ff54aa, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+    </style>
     
 </head>
 <body>
-	<div class="Sizer">
-  <h1>The Math Quizzer</h1>
-  <h2 class="hi">Multiply</h2>
-  <h3 id="numberDisplay"></h3>
-  <h2 class="hi">by</h2>
-  <h3 id="divisorDisplay"></h3>
+  <h1 class="glow">The Math Quizzer</h1>
+  <h2 class="glow" class="hi">Multiply</h2>
+  <h3 class="glow" id="numberDisplay"></h3>
+  <h2 class="glow" class="hi">by</h2>
+  <h3 class="glow" id="divisorDisplay"></h3>
 
-  <input type="number" id="inputer">
+  <input class="glow" type="number" id="inputer">
   <button id="bob" onclick="checkAnswer()">Submit</button>
-  <p id="resultDisplay"></p>
+  <p class="glow" id="resultDisplay"></p>
 
-  <h3 class="hi">Question Number</h3>
-  <h3 id="count">0</h3>
+  <h3 class="glow" class="hi">Question Number</h3>
+  <h3 class="glow" id="count">0</h3>
 
   <button id="hhh" onclick="nextQuestion()">Next Question</button>
 
@@ -56,8 +75,8 @@
 
     nextQuestion();
   </script>
-<h1 id="demo"></h1>
-<h1 id="thetimer"></h1>
+<h1 class="glow" id="demo"></h1>
+<h1 class="glow" id="thetimer"></h1>
 <button id="thetimerstart" onclick="timer()">Press To Start Timer</button>
 
 <audio id="alarmSound" src="alarm-clock-90867.mp3" preload="auto"></audio>
@@ -84,7 +103,6 @@
       }, 1000);
     }
   </script>
-	</div>
+
 </body>
 </html>
-
