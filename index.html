@@ -1,70 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Multiplication Quizzer</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-    <style>
-      body{
-        background-color: black;
-      }
-      .glow {
-  color: #fff;
-  text-align: center;
-  animation: glow .5s ease-in-out infinite alternate;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Multiplication Quizzer</title>
+  <style>
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-  
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff83c1, 0 0 40px #ff6cb6, 0 0 50px #ff79bc, 0 0 60px #ff54aa, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
+    .glow {
+      color: #fff;
+      animation: glow 0.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        opacity: 85%;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+      to {
+        opacity: 95%;
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff83c1, 0 0 40px #ff6cb6, 0 0 50px #ff79bc, 0 0 60px #ff54aa, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+    }
+
+    .scoreboard {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin: 20px auto;
+    }
+
+    .hiiiii {
+      font-size: large;
+    }
+
+    #progressContainer {
+      width: 80%;
+      margin: 20px auto;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #ff4da6;
+    }
+
+    #progressBar {
+      height: 30px;
+      width: 0%;
+      background: linear-gradient(to right, #ff4da6, #ff83c1);
+      transition: width 0.5s ease;
+    }
+
+    #celebration {
+      display: none;
+      font-size: 2em;
+      color: #ff4da6;
+      margin-top: 20px;
+      animation: glowCelebration 1s ease-in-out infinite alternate;
+      padding-bottom: 5px;
+    }
+
+    @keyframes glowCelebration {
+      from {
+        opacity: 85%;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+      to {
+        opacity: 95%;
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff83c1, 0 0 40px #ff6cb6, 0 0 50px #ff79bc, 0 0 60px #ff54aa, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+    }
+body{
+    text-align: center;
 }
-    </style>
-    
+#bob{
+    background-color: rgb(106, 255, 93);
+    text-emphasis-color: black;
+    height: 30px;
+}
+#inputer{
+    background-color: rgb(0, 0, 0);
+    height: 30px;
+    font-size: large;
+    box-shadow:black;
+}
+.hi{
+    text-decoration: underline;
+}
+#hhh{
+    background-color: rgb(226, 23, 23);
+    height: 30px;
+}
+#thetimer{
+    font-size:medium ;
+}
+#thetimerstart{
+    height: 30px;
+    background-color: darkorange;
+}
+.hieere{
+    align-content: center;
+}
+  </style>
 </head>
 <body>
   <h1 class="glow">The Math Quizzer</h1>
-  <h2 class="glow" class="hi">Multiply</h2>
+  <h2 class="glow">Multiply</h2>
   <h3 class="glow" id="numberDisplay"></h3>
-  <h2 class="glow" class="hi">by</h2>
+  <h2 class="glow">by</h2>
   <h3 class="glow" id="divisorDisplay"></h3>
 
-  <input class="glow" type="number" id="inputer">
+  <input class="glow" type="number" id="inputer" />
   <button id="bob" onclick="checkAnswer()">Submit</button>
   <p class="glow" id="resultDisplay"></p>
 
-  <h3 class="glow" class="hi">Question Number</h3>
+  <h3 class="glow">Question Number</h3>
   <h3 class="glow" id="count">0</h3>
+
+  <div class="scoreboard">
+    <div><h4 class="glow hiiiii">Amount Wrong:<br><br><span class="hiiiii" id="wrongCount">0</span></h4></div>
+    <div><h4 class="glow hiiiii">Amount Correct:<br><br><span class="hiiiii" id="correctCount">0</span></h4></div>
+  </div>
+
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <div id="celebration" class="glow">🎉 You hit 10 correct answers! 🎉</div>
 
   <button id="hhh" onclick="nextQuestion()">Next Question</button>
 
+  <h1 class="glow" id="demo"></h1>
+  <h1 class="glow" id="thetimer"></h1>
+  <button id="thetimerstart" onclick="time()">Press To Start Timer</button>
+
+  <audio id="alarmSound" src="alarm-clock-90867.mp3" preload="auto"></audio>
+
   <script>
+    let count10wrong = 0;
+    let count10correct = 0;
     let number, divisor;
     let questionCount = 0;
+
+    function counter10() {
+      document.getElementById("wrongCount").textContent = count10wrong;
+      document.getElementById("correctCount").textContent = count10correct;
+    }
 
     function reset() {
       number = Math.floor(Math.random() * 12) + 1;
       divisor = Math.floor(Math.random() * 12) + 1;
-
       document.getElementById("numberDisplay").textContent = number;
       document.getElementById("divisorDisplay").textContent = divisor;
       document.getElementById("inputer").value = "";
       document.getElementById("resultDisplay").textContent = "";
     }
 
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'Enter') {
+    event.preventDefault(); 
+    reset();                
+    checkAnswer();        
+    nextQuestion();         
+  }
+});
+
+function myFunction() {
+  console.log('Enter key was pressed!');
+}
+
+
+
     function checkAnswer() {
       const userAnswer = Number(document.getElementById("inputer").value);
       const correctAnswer = number * divisor;
-      const result = userAnswer === correctAnswer
-        ? "✅ Correct!"
-        : `❌ Incorrect. The answer is ${correctAnswer}.`;
+      let result;
+
+      if (userAnswer === correctAnswer) {
+        count10correct++;
+        result = "✅ Correct!";
+      } else {
+        count10wrong++;
+        result = `❌ Incorrect. The answer is ${correctAnswer}.`;
+      }
+
       document.getElementById("resultDisplay").textContent = result;
+      counter10();
+      updateProgressBar();
+
+      if (count10correct === 10) {
+        document.getElementById("celebration").style.display = "block";
+      }
+    }
+
+    function updateProgressBar() {
+      const progress = Math.min(count10correct, 10);
+      const progressPercent = (progress / 10) * 100;
+      document.getElementById("progressBar").style.width = progressPercent + "%";
     }
 
     function nextQuestion() {
@@ -73,36 +208,33 @@
       reset();
     }
 
+let timerInterval;
+
+function time() {
+  clearInterval(timerInterval);
+  document.getElementById("thetimerstart").style.visibility = "hidden";
+  document.getElementById("thetimer").textContent = "";
+  document.getElementById("demo").textContent = "";
+
+  const countDownDate = new Date().getTime() + 60 * 1000;
+
+  timerInterval = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    if (distance >= 0) {
+      const seconds = Math.ceil(distance / 1000);
+      document.getElementById("thetimer").textContent = `⏳ ${seconds}s`;
+    } else {
+      clearInterval(timerInterval);
+      document.getElementById("thetimer").textContent = "!TIME UP!";
+      document.getElementById("alarmSound").play();
+    }
+  }, 1000);
+}
+
+
     nextQuestion();
   </script>
-<h1 class="glow" id="demo"></h1>
-<h1 class="glow" id="thetimer"></h1>
-<button id="thetimerstart" onclick="timer()">Press To Start Timer</button>
-
-<audio id="alarmSound" src="alarm-clock-90867.mp3" preload="auto"></audio>
-
-  <script>
-    function timer() {
-      document.getElementById("thetimerstart").style.visibility = "hidden";
-
-      const countDownDate = new Date().getTime() + 60 * 1000;
-
-      const x = setInterval(function () {
-        const now = new Date().getTime();
-        const distance = countDownDate - now;
-
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById("demo").innerHTML = seconds + "s ";
-
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("thetimer").innerHTML = "!TIME UP!";
-          document.getElementById("demo").innerHTML = "";
-          document.getElementById("alarmSound").play();
-        }
-      }, 1000);
-    }
-  </script>
-
 </body>
 </html>
